@@ -16,17 +16,15 @@ jobs:
       with:
         python-version: '3.10.11'
 
-    - name: Bootstrap pip if missing
+    - name: Install dependencies except PyInstaller
       run: |
-        python -m ensurepip || true
         python -m pip install --upgrade pip
+        python -m pip install pdfplumber pandas pypdf openpyxl thefuzz
 
-    - name: Install main dependencies
+    - name: Install PyInstaller and build exe
       run: |
-        python -m pip install pdfplumber pandas pypdf openpyxl thefuzz pyinstaller
-
-    - name: Build executable with PyInstaller
-      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pyinstaller
         python -m pyinstaller --onefile --add-data "hungarian_names.txt;." heti_teljesitesi.py
 
     - name: Upload build artifact
