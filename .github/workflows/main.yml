@@ -26,4 +26,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: python-exe
-        path: dist
+        path: path: dist/heti_teljesitesi.exe
